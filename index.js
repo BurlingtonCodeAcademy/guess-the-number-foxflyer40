@@ -15,7 +15,7 @@ function randomInt(maxNum,minNum){
 
 start();
 // initialize game variables
-let HighNum = 5
+let HighNum = 100
 let LowNum = 1
 let numGuessed = randomInt(HighNum, LowNum)
 
