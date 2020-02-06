@@ -35,7 +35,16 @@ if (humanAnswer === "y") {
   console.log("YIPEE !!!\nYou picked " + secretNumber +"\nI guessed " + numGuessed)
 } else {
   let highLowIn = await ask("Is your number higher or lower than my guess?\n(Please enter H or L)\n")
+    if (highLowIn === "H") {
+    LowNum = numGuessed
+  } else {
+    HighNum = numGuessed
+  }
+
   console.log(highLowIn)
+  console.log(HighNum)
+  console.log(LowNum)
+
 } 
  
     process.exit();
