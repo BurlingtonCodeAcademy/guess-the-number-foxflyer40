@@ -26,14 +26,17 @@ async function start() {
   console.log('You entered: ' + secretNumber);
   // Now try and complete the program.
 
- // ask human to confirm guess
+ // Guess and ask human to confirm guess
  let humanAnswer = await ask("Is your number " + numGuessed + "?\n")
 console.log(humanAnswer)
  
+// respond to Y/N - quit if Y ask high or low if N
 if (humanAnswer === "y") {
   console.log("YIPEE !!!\nYou picked " + secretNumber +"\nI guessed " + numGuessed)
+} else {
+  let highLowIn = await ask("Is your number higher or lower than my guess?\n(Please enter H or L)\n")
+  console.log(highLowIn)
 } 
- 
  
     process.exit();
 }
