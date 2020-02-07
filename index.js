@@ -19,6 +19,7 @@ let lowNum = 1;
 let lastGuessed = 0;
 let humanAnswer = "";
 
+
 async function start() {
   console.log(
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
@@ -32,8 +33,7 @@ async function start() {
   // create game loop
   while (humanAnswer !== "y") {
     // Guess number and ask human to confirm guess
-    lastGuessed = newGuessed
-    let newGuessed = randomInt(highNum, lowNum);
+        let newGuessed = randomInt(highNum, lowNum);
     humanAnswer = await ask("Is your number " + newGuessed + "?\n");
     console.log("\n");
 
@@ -50,14 +50,17 @@ async function start() {
       console.log(lastGuessed + " = lastGuessed");
       process.exit();
     } else {
+      
       let highLowIn = await ask(
         "Is your number higher or lower than my guess?\n(Please enter H or L)\n"
       );
       // if H store guess as lowNum if L store guess as Hi num
       if (highLowIn === "h") {
+        lastGuessed = newGuessed
         lowNum = newGuessed;
           } else if (highLowIn === "l") {
-        highNum = newGuessed;
+            lastGuessed = newGuessed
+            highNum = newGuessed;
          } else {
       console.log("I don't think so Buster.\n");
       }
