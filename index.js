@@ -31,7 +31,7 @@ async function start() {
 
   // create game loop OR error out if non number, decimal number or number out of range is entered
   if ((secretNumber % 1 === 0) && (secretNumber >= lowNum && secretNumber <= highNum)) {
-    console.log("\nYou entered: " + secretNumber + "\n");
+    console.log("\nYou entered: " + secretNumber + "\n(Which I TOTALLY can't see!)\n");
   } else {
     console.log("\n\nI am sorry that is not a valid entry.\n(Decimals and letters are not allowed.)\nWhen you are ready to play:\n- Restart the game\n- Then enter a Number between " + lowNum + " and " + highNum + "...\n");
     humanAnswer = "y"
@@ -50,21 +50,21 @@ async function start() {
     numberOfTries += 1
 
     // Guess number and ask human to confirm guess
-    humanAnswer = await ask("Is your number " + newGuessed + "?\n");
+    humanAnswer = await ask("Is your number " + newGuessed + "?\nPlease enter y or n\n");
 
     // print win message and exit if Y 
     if (humanAnswer === "y") {
       console.log("YIPEE !!!\nYour number is " + newGuessed + "\nI guessed it in " + numberOfTries + " tries!");
       // if the human did not give good input add this line
       if (humanTricks >= 1) {
-        console.log("(However, you tried to trick me " + humanTricks + " times.)\nSad.")
+        console.log("(MAYBE you made a mistake here and there,\nHowever, I think you tried to trick me " + humanTricks + " times.)\nSad.")
       }
       process.exit();
 
       // verify "n" answer AND check for wrong input with !==n
     } else if (humanAnswer !== "n") {
       // error message and re-guess if NOT n + iterate humanTricks counter
-      console.log("\nPlease answer 'y' or 'n' only\nLet me guess again...\n")
+      console.log("\nUh-O!\nPlease use h or l only.\nLet me guess again...\n")
       humanTricks += 1
     } else {
       // n input verified, ask if guess is higher or lower than secretNumber
