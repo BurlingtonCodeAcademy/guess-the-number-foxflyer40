@@ -24,40 +24,25 @@ let lowNum = 1;
 let humanAnswer = "";
 let numberOfTries = 0
 let humanTricks = 0
-let newGuessed = 0
 
-
-
-async function start() {
-  console.log(
-    "\nLet's play a game where you (human),\npick a secret number between 1 and 100,\nand I (computer) try to guess it.\nOK?\n"
-  );
-  let secretNumber = await ask(
-    "What is your secret number?\nI won't peek, I promise...\n"
-  );
-
-  // create game loop OR error out if non number, decimal number or number out of range is entered
-  if ((secretNumber % 1 === 0) && (secretNumber >= lowNum && secretNumber <= highNum)) {
-    console.log("\nYou entered: " + secretNumber + "\n");
-    console.log(newGuessed + " newGuessed")
-    console.log(highNum + " highNum")
-    console.log(lowNum + " lowNum")
-  } else {
-    console.log("\n\nI am sorry that is not a valid entry.\n(Decimals and letters are not allowed.)\nWhen you are ready to play:\n- Restart the game\n- Then enter a Number between " + lowNum + " and " + highNum + "...\n");
-    humanAnswer = "y"
-  }
-
-  while (humanAnswer !== "y") {
+while (humanAnswer !== "y") {
 
     // create new guess + rectify if = high or low number + iterate number of tries
-    
-    
-        let newGuessed = calcInt(highNum, lowNum);
-        /*
-        
-          console.log("1")
-        } 
- */
+    let newGuessed = calcInt(highNum, lowNum);
+    /*
+     if(highNum - newGuessed === 1) {
+       newGuessed = highNum
+     }
+     if(newGuessed - lowNum === 1) {
+       newGuessed = lowNum
+     }
+     
+    if (newGuessed === highNum) {
+      newGuessed -= 1
+    }
+    if (newGuessed === lowNum) {
+      newGuessed += 1
+     }*/
     numberOfTries += 1
 
     // Guess number and ask human to confirm guess
@@ -86,32 +71,20 @@ async function start() {
         if L, store guess as highNum -OR- 
         if entry is not H or L give error message and re-guess */
       let highLowIn = await ask(
-        "\nIs your number higher or lower than " + newGuessed + "?\n(Please enter h or l)\n"
+        "Is your number higher or lower than " + newGuessed + "?\n(Please enter h or l)\n"
       );
       if (highLowIn === "h") {
-        
         lowNum = newGuessed;
-        console.log("\n" + newGuessed + " newGuessed")
+        console.log(newGuessed + " newGuessed")
         console.log(highNum + " highNum")
         console.log(lowNum + " lowNum")
-      } 
-      else if (highLowIn === "l") {
-        if ((highNum === newGuessed) && (highLowIn = "l")) {
-          newGuessed -= 1
-          console.log("2")
-        } 
-        
-        else {
+      } else if (highLowIn === "l") {
         highNum = newGuessed;
         console.log(newGuessed + " newGuessed")
         console.log(highNum + " highNum")
         console.log(lowNum + " lowNum")
         // error message if human cannot follow instructions + iterate humanTricks counter
-      }
-    
-    } 
-    
-    else {
+      } else {
         console.log("\nOOPSIE!\nYou need to use h or l only\nLet me guess again...\n");
         humanTricks += 1
       }
@@ -120,4 +93,11 @@ async function start() {
     }
   }
   process.exit();
-}
+
+
+
+
+
+
+
+
