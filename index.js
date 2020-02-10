@@ -17,7 +17,7 @@ function calcInt(maxNum, minNum) {
   return Math.floor(((maxNum - minNum) / 2) + minNum)
 }
 
-start();
+go();
 // initialize global game variables
 let highNum = 5;
 let lowNum = 1;
@@ -28,7 +28,7 @@ let newGuessed = 0
 
 
 
-async function start() {
+async function go() {
   console.log(
     "\nLet's play a game where you (human),\npick a secret number between 1 and 100,\nand I (computer) try to guess it.\nOK?\n"
   );
