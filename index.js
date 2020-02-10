@@ -12,6 +12,11 @@ function randomInt(maxNum, minNum) {
   return Math.floor(minNum + Math.random() * (maxNum - minNum + 1));
 }
 
+// calculate guessed number
+function calcInt(maxNum, minNum) {
+  return Math.floor(((maxNum - minNum) / 2) + minNum)
+}
+
 start();
 // initialize global game variables
 let highNum = 100;
@@ -40,17 +45,28 @@ async function start() {
   while (humanAnswer !== "y") {
 
     // create new guess + rectify if = high or low number + iterate number of tries
-    let newGuessed = randomInt(highNum, lowNum);
+    let newGuessed = calcInt(highNum, lowNum);
+    /*
+     if(highNum - newGuessed === 1) {
+       newGuessed = highNum
+     }
+     if(newGuessed - lowNum === 1) {
+       newGuessed = lowNum
+     }
+     
     if (newGuessed === highNum) {
       newGuessed -= 1
     }
     if (newGuessed === lowNum) {
       newGuessed += 1
-    }
+     }*/
     numberOfTries += 1
 
     // Guess number and ask human to confirm guess
     humanAnswer = await ask("Is your number " + newGuessed + "?\nPlease enter y or n\n");
+    console.log(newGuessed + " newGuessed")
+    console.log(highNum + " highNum")
+    console.log(lowNum + " lowNum")
 
     // print win message and exit if Y 
     if (humanAnswer === "y") {
@@ -76,11 +92,17 @@ async function start() {
       );
       if (highLowIn === "h") {
         lowNum = newGuessed;
+        console.log(newGuessed + " newGuessed")
+        console.log(highNum + " highNum")
+        console.log(lowNum + " lowNum")
       } else if (highLowIn === "l") {
         highNum = newGuessed;
+        console.log(newGuessed + " newGuessed")
+        console.log(highNum + " highNum")
+        console.log(lowNum + " lowNum")
         // error message if human cannot follow instructions + iterate humanTricks counter
       } else {
-        console.log("\nOOPSIE!\nYou need to use h or l\nLet me guess again...\n");
+        console.log("\nOOPSIE!\nYou need to use h or l only\nLet me guess again...\n");
         humanTricks += 1
       }
       //Guess again
