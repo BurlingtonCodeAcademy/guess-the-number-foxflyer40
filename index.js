@@ -19,7 +19,7 @@ function calcInt(maxNum, minNum) {
 
 start();
 // initialize global game variables
-let highNum = 100;
+let highNum = 5;
 let lowNum = 1;
 let humanAnswer = "";
 let numberOfTries = 0
@@ -88,14 +88,22 @@ async function start() {
       let highLowIn = await ask(
         "\nIs your number higher or lower than " + newGuessed + "?\n(Please enter h or l)\n"
       );
+
+
+
+
       if (highLowIn === "h") {
-        
+        if  (( newGuessed + 1 === highNum) && (highLowIn = "h")) {
+        newGuessed += 1}
+        else {
         lowNum = newGuessed;
         console.log("\n" + newGuessed + " newGuessed")
         console.log(highNum + " highNum")
         console.log(lowNum + " lowNum")
       } 
-      else if (highLowIn === "l") {
+    }
+
+       if (highLowIn === "l") {
         if ((highNum === newGuessed) && (highLowIn = "l")) {
           newGuessed -= 1
           console.log("2")
@@ -108,9 +116,12 @@ async function start() {
         console.log(lowNum + " lowNum")
         // error message if human cannot follow instructions + iterate humanTricks counter
       }
+      }
+     
     
-    } 
-    
+
+
+
     else {
         console.log("\nOOPSIE!\nYou need to use h or l only\nLet me guess again...\n");
         humanTricks += 1

@@ -29,20 +29,7 @@ while (humanAnswer !== "y") {
 
     // create new guess + rectify if = high or low number + iterate number of tries
     let newGuessed = calcInt(highNum, lowNum);
-    /*
-     if(highNum - newGuessed === 1) {
-       newGuessed = highNum
-     }
-     if(newGuessed - lowNum === 1) {
-       newGuessed = lowNum
-     }
-     
-    if (newGuessed === highNum) {
-      newGuessed -= 1
-    }
-    if (newGuessed === lowNum) {
-      newGuessed += 1
-     }*/
+   
     numberOfTries += 1
 
     // Guess number and ask human to confirm guess
