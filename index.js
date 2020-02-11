@@ -97,9 +97,9 @@ async function go() {
         newGuessed += 1}
         else {
         lowNum = newGuessed;
-        console.log("\n" + newGuessed + " newGuessed")
-        console.log(highNum + " highNum")
-        console.log(lowNum + " lowNum")
+         console.log("\n" + newGuessed + " newGuessed")
+         console.log(highNum + " highNum")
+         console.log(lowNum + " lowNum")
       } 
     }
 
