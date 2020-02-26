@@ -25,15 +25,16 @@ async function start() {
   let lowNum = 0;
   let humanAnswer = "";
   let numberOfTries = 0
-  let humanTricks = 0
   console.log("\nLet's play a game where you (human),\npick a secret number,\nand I (computer) try to guess it.\nOK?\n");
 
   let highNumInput = await ask(
     "But first, just to make it interesting, you set the range...\nPick a number between 1 and... what?\n>"
   );
-  if ((highNumInput % 1 === 0) && (highNumInput > lowNum)) {
+  if (highNumInput === "") {
+    console.log("\nOK... let's say between 1 and 100 then")
+  } else if ((highNumInput % 1 === 0) && (highNumInput > lowNum)) {
     highNum = highNumInput
-    console.log("Good.  Pick a number between 1 and " + highNum)
+    console.log("\nGood.  Pick a number between 1 and " + highNum)
   } else {
     console.log("\n\nI am sorry that is not a valid entry.\n(Decimals and letters are not allowed.)\nWhen you are ready to play, restart the game\n");
     process.exit()
@@ -53,8 +54,6 @@ async function start() {
   }
 
   while (humanAnswer !== "y") {
-    console.log(highNum) + '2';
-    console.log(lowNum);
     // create new guess + rectify if = high or low number + iterate number of tries
     let newGuessed = calcInt(highNum, lowNum);
     if (newGuessed === highNum) {
@@ -71,10 +70,6 @@ async function start() {
     // print win message and exit if Y 
     if (humanAnswer === "y") {
       console.log("YIPEE !!!\nYour number is " + newGuessed + "\nI guessed it in " + numberOfTries + " tries!");
-      // if the human did not give good input add this line
-      if (humanTricks >= 1) {
-        console.log("(MAYBE you made a mistake here and there,\nHowever, I think you tried to trick me " + humanTricks + " times.)\nSad.")
-      }
       process.exit();
     } else if (humanAnswer !== "n") {  // verify "n" answer AND check for wrong input with !==n
       // error message and re-guess if NOT n + iterate humanTricks counter
@@ -83,17 +78,15 @@ async function start() {
     } else {
       // n input verified, ask if guess is higher or lower than secretNumber
       /* if H, store guess as lowNum  -OR- 
-        if L, store guess as highNum -OR- 
-        if entry is not H or L give error message and re-guess */
+        if L, store guess as highNum -OR- */
       let highLowIn = await ask("Is your number higher or lower than " + newGuessed + "?\n(Please enter h or l)\n>")
       if (highLowIn === "h") {
         lowNum = newGuessed;
       } else if (highLowIn === "l") {
         highNum = newGuessed;
-        // error message if human cannot follow instructions + iterate humanTricks counter
+        // error message if human cannot follow instructions
       } else {
         console.log("\nOOPSIE!\nYou need to use h or l only\nLet me guess again...\n");
-        humanTricks += 1
       }
       //Guess again
       console.log("\nOk.  Let's see.... Hmmm...");
