@@ -12,12 +12,17 @@ function randomInt(maxNum, minNum) {
   return Math.floor(minNum + Math.random() * (maxNum - minNum + 1));
 }
 
+// calculate guessed number
+function calcInt(maxNum, minNum) {
+  return Math.floor(((maxNum - minNum) / 2) + minNum)
+}
+
 start();
 
 async function start() {
   // initialize global game variables
   let highNum = 100;
-  let lowNum = 1;
+  let lowNum = 0;
   let humanAnswer = "";
   let numberOfTries = 0
   let humanTricks = 0
@@ -40,7 +45,7 @@ console.log(lowNum);
     console.log(highNum) + '2';
     console.log(lowNum);
     // create new guess + rectify if = high or low number + iterate number of tries
-    let newGuessed = randomInt(highNum, lowNum);
+    let newGuessed = calcInt(highNum, lowNum);
     if (newGuessed === highNum) {
       newGuessed -= 1
     }
